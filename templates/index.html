@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join a Group Chat</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="card">
+        <h2>Join a Group Chat</h2>
+
+        <form action="/" method="POST" id="joinForm" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Include this to show error messages from Django (like wrong password) -->
+        {% if messages %}
+            <ul class="messages" style="color: red; list-style: none; padding: 0; text-align: center;">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="userName">Your Name</label>
+            <input type="text" id="userName" name="username" placeholder="Eg: Bhombol" autofocus required>
+        </div>
+
+        <!-- NEW: User Profile Password -->
+        <div class="form-group">
+            <label for="userPassword">Profile Password</label>
+            <input type="password" id="userPassword" name="user_password" placeholder="Enter your profile password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="roomName">Room Name</label>
+            <input type="text" id="roomName" name="room" placeholder="Eg: Project Alpha" required>
+        </div>
+
+        <!-- NEW: Room Password -->
+        <div class="form-group">
+            <label for="roomPassword">Room Password</label>
+            <input type="password" id="roomPassword" name="room_password" placeholder="Enter room password" required>
+        </div>
+
+        <button type="submit">Enter Room</button>
+    </form>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

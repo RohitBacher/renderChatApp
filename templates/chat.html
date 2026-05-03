@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Room - {{ room.name }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="chat-container">
+        <!-- Chat Header -->
+        <div class="chat-header">
+            <div class="header-info">
+                <span class="room-creator">{{ user.username }}</span>
+                <h2>{{ room.name }}</h2>
+            </div>
+            <button class="menu-btn">&#8942;</button>
+        </div>
+
+        <!-- Dynamic Chat Messages Area -->
+        <div class="chat-messages" id="chatBox">
+            {% for msg in messages %}
+                <!-- Check if the current user sent the message to put it on the right side -->
+                <div class="message {% if msg.sender == user %}right{% else %}left{% endif %}">
+                    <div class="bubble">
+                        <div class="text">{{ msg.content }}</div>
+                        <div class="time">{{ msg.timestamp|date:"h:i A" }}</div>
+                    </div>
+                    <div class="avatar default-avatar">👤</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-area">
+            
+            <!-- Hidden inputs for JavaScript to use -->
+            <input type="hidden" id="csrfToken" value="{{ csrf_token }}">
+            <input type="hidden" id="roomId" value="{{ room.id }}">
+            <input type="hidden" id="currentUsername" value="{{ user.username }}">
+
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="Write Something...">
+            </div>
+            <button class="send-btn" id="sendBtn">&#10148;</button>
+        </div>
+    </div>
+
+    <!-- Include your script -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
