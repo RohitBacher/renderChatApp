@@ -137,7 +137,7 @@ STATICFILES_DIRS = [
 
 # # --- ADD THESE TWO LINES ---
 # # This tells Django where to gather the files for production
-# STATIC_ROOT = BASE_DIR / 'staticfiles' 
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 # # This tells WhiteNoise to compress and cache the files to make your site faster
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
