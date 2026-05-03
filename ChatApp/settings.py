@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -135,9 +135,9 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
-# --- ADD THESE TWO LINES ---
-# This tells Django where to gather the files for production
-STATIC_ROOT = BASE_DIR / 'staticfiles' 
+# # --- ADD THESE TWO LINES ---
+# # This tells Django where to gather the files for production
+# STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
-# This tells WhiteNoise to compress and cache the files to make your site faster
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# # This tells WhiteNoise to compress and cache the files to make your site faster
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
